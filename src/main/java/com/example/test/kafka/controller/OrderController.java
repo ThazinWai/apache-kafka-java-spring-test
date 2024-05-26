@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class OrderController {
@@ -20,7 +22,12 @@ public class OrderController {
 
     @PostMapping("/orders")
     public ResponseEntity<OrderModel> createOrder(@RequestBody OrderModel orderModel) {
-        OrderModel createdOrder = orderService.createOrder(orderModel);
+        OrderModel createdOrder = new OrderModel();
+        createdOrder.setId(3L);
+        //createdOrder.setId(orderModel.getId()+1);
+        createdOrder.setStatus("Pending");
+        orderService.createOrder(orderModel);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdOrder);
     }
+
 }

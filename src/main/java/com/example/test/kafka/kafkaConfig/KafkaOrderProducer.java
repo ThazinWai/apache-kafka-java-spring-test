@@ -16,4 +16,5 @@ public class KafkaOrderProducer {
     public void sendOrder(OrderModel orderModel) {
         kafkaTemplate.send(TOPIC, orderModel);
     }
+
 }
